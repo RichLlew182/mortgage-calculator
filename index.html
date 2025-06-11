@@ -16,6 +16,10 @@
     .attribution {
       font-size: 11px;
       text-align: center;
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
     }
 
     .attribution a {
@@ -28,20 +32,22 @@
 
   <form id="mortgageCalculatorForm">
     <div class="">
-      <h1>Mortgage Calculator</h1>
-      <button id="clearBtn" href="#" type="button">Clear All</button>
+      <div>
+        <h1>Mortgage Calculator</h1>
+        <button id="clearBtn" href="#" type="button">Clear All</button>
+      </div>
 
-      <label for="mortgageAmount">
-        Mortgage Amount
-
-      </label>
+      <label for="mortgageAmount">Mortgage Amount</label>
       <input type="text" name="mortgage-amount" id="mortgageAmount">
+      <div class="error error-mortgage-amount"></div>
 
       <label for="mortgageTerm">Mortgage Term</label>
       <input type="number" name="mortgage-term" id="mortgageTerm" max="40">
+      <div class="error error-mortgage-term"></div>
 
       <label for="interestRate">Interest Rate</label>
       <input type="text" name="interest-rate" id="interestRate">
+      <div class="error error-interest-rate"></div>
 
       <label for="mortgage-type">Mortgage Type</label>
       <input type="radio" id="repayment" name="mortgage-type" value="Repayment" checked="true">
@@ -58,9 +64,9 @@
     <div class="">
       <!-- Empty results start -->
 
-      <img src="./assets/images/illustration-empty.svg" height="150" width="150" alt="Mortgage Calculator">
 
       <div class="results-empty">
+        <img src="./assets/images/illustration-empty.svg" height="150" width="150" alt="Mortgage Calculator">
         <h2>Results shown here</h2>
 
         <p>

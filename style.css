@@ -9,6 +9,14 @@ body {
 
 }
 
-/* .results-completed {
+.results-completed {
     display: none
-} */
+}
+
+.error {
+    color: red;
+}
+
+input.error {
+    border: 1px solid red;
+}

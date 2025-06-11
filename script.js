@@ -1,23 +1,29 @@
 const mortgageCalculatorForm = document.querySelector('#mortgageCalculatorForm');
 
+const errorMortgageAmount = document.querySelector('.error-mortgage-amount')
+
 mortgageCalculatorForm.addEventListener('submit', function (e) {
 
     e.preventDefault();
 
-    let numRegex = /^\d+$/;
-    let floatRegex = /^\d*\.?\d*$/;
+    const mortgageAmountInput = document.querySelector('input[name="mortgage-amount"]');
+    const mortgageTermInput = document.querySelector('input[name="mortgage-term"]');
+    const interestRateInput = document.querySelector('input[name="interest-rate"]');
+    const mortgageTypeInput = document.querySelector('input[name="mortgage-type"]');
 
-    const formData = new FormData(e.target);
-
-    const mortgageAmount = formData.get('mortgage-amount').trim();
-    const mortgageTerm = formData.get('mortgage-term').trim();
-    const interestRate = formData.get('interest-rate').trim();
-    const mortgageType = formData.get('mortgage-type');
+    const mortgageAmount = mortgageAmountInput.value.trim();
+    const mortgageTerm = mortgageTermInput.value.trim();
+    const interestRate = interestRateInput.value.trim();
+    const mortgageType = mortgageTypeInput.value.trim();
 
     /* Error Handling */
 
-    if (mortgageAmount === '' || mortgageTerm === '' || interestRate === '') {
-        console.log('error 1')
+    let numRegex = /^\d+$/;
+    let floatRegex = /^\d*\.?\d*$/;
+
+    if (mortgageAmount === '') {
+        errorMortgageAmount.innerHTML = 'This is a required field';
+        mortgageAmountInput.classList.add('error')
     }
 
     else if (numRegex.test(mortgageAmount) !== true || numRegex.test(mortgageTerm) !== true || floatRegex.test(interestRate) !== true) {
@@ -49,10 +55,16 @@ function calculateRepayments(mortgageAmount, mortgageTerm, interestRate, mortgag
 
 }
 
+const emptyResults = document.querySelector('.results-empty');
+const completedResults = document.querySelector('.results-completed');
+
+const repaymentDiv = document.querySelector('.repayment-amount');
+const totalRepaymentDiv = document.querySelector('.total-repayment');
+
 function updateForm(value, total) {
 
-    const repaymentDiv = document.querySelector('.repayment-amount');
-    const totalRepaymentDiv = document.querySelector('.total-repayment');
+    completedResults.style.display = 'block'
+    emptyResults.style.display = 'none'
 
     repaymentDiv.innerHTML = '£' + value;
     totalRepaymentDiv.innerHTML = '£' + total;
@@ -66,5 +78,7 @@ clearButton.addEventListener('click', function (e) {
     const form = e.target.form;
 
     form.reset();
+    completedResults.style.display = 'none';
+    emptyResults.style.display = 'block'
 
 })
