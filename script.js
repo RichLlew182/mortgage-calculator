@@ -3,11 +3,8 @@ const mortgageCalculatorForm = document.querySelector('#mortgageCalculatorForm')
 mortgageCalculatorForm.addEventListener('submit', function (e) {
 
     e.preventDefault();
-    console.log(e);
 
     const formData = new FormData(e.target);
-
-    console.log(formData)
 
     const mortgageAmount = formData.get('mortgage-amount')
     const mortgageTerm = formData.get('mortgage-term')
@@ -25,18 +22,30 @@ mortgageCalculatorForm.addEventListener('submit', function (e) {
 
 function calculateRepayments(mortgageAmount, mortgageTerm, interestRate, mortgageType) {
 
-    const interestRateDecimal = interestRate / 100;
-    console.log('Interest Rate Decimal: ' + interestRateDecimal)
-
     const payments = mortgageTerm * 12;
-    const monthlyPayment = (mortgageAmount / payments).toFixed(2);
-    const monthlyInterest = ((mortgageAmount * interestRateDecimal) / 12).toFixed(2);
-    const capitalRepayment = monthlyPayment; + monthlyInterest;;
+    const monthlyInterest = interestRate / 100 / 12;
+    const interestOnly = mortgageAmount * monthlyInterest;
+    const capitalRepayment = mortgageAmount * monthlyInterest * Math.pow(1 + monthlyInterest, payments) / (Math.pow(1 + monthlyInterest, payments) - 1)
 
     console.log({ capitalRepayment });
     console.log({ monthlyInterest })
+    console.log({ interestOnly })
+    console.log(capitalRepayment + monthlyInterest)
 
+    if (mortgageType === 'Repayment') {
+        updateForm(capitalRepayment.toFixed(2))
+    }
+    else {
+        updateForm(interestOnly.toFixed(2))
+    }
 
+}
+
+function updateForm(value) {
+
+    const repaymentDiv = document.querySelector('.repayment-amount');
+
+    repaymentDiv.innerHTML = '£' + value
 
 }
 
