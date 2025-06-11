@@ -26,7 +26,7 @@
 
 <body>
 
-  <form>
+  <form id="mortgageCalculatorForm">
     <div class="">
       <h1>Mortgage Calculator</h1>
       <a href="#" type="button">Clear All</a>
@@ -35,23 +35,24 @@
         Mortgage Amount
 
       </label>
-      <input type="number" name="mortgage-amount" id="mortgageAmount" required>
+      <input type="number" name="mortgage-amount" id="mortgageAmount">
 
       <label for="mortgageTerm">Mortgage Term</label>
-      <input type="number" name="mortgage-term" id="mortgageTerm" required>
+      <input type="number" name="mortgage-term" id="mortgageTerm">
 
       <label for="interestRate">Interest Rate</label>
-      <input type="number" name="interest-rate" id="interestRate" required>
+      <input type="number" name="interest-rate" id="interestRate">
 
       <label for="mortgage-type">Mortgage Type</label>
       <input type="radio" id="repayment" name="mortgage-type" value="Repayment">
       <label for="repayment">Repayment</label>
-      <input type="radio" id="interestOnly" name="mortgage-type" value="Interest">
+      <input type="radio" id="interestOnly" name="mortgage-type" value="Interest Only">
       <label for="repaymentOnly">Interest Only</label>
 
 
-      <a href="#" class="btn" type="button"><img src="./assets/images/icon-calculator.svg" alt=""> Calculate
-        Repayments</a>
+      <button id="calculateRepaymentsBtn" class="btn" type="submit"><img src="./assets/images/icon-calculator.svg"
+          alt=""> Calculate
+        Repayments</button>
     </div>
 
     <div class="">
