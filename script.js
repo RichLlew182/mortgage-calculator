@@ -4,14 +4,29 @@ mortgageCalculatorForm.addEventListener('submit', function (e) {
 
     e.preventDefault();
 
+    let numRegex = /^\d+$/;
+    let floatRegex = /^\d*\.?\d*$/;
+
     const formData = new FormData(e.target);
 
-    const mortgageAmount = formData.get('mortgage-amount')
-    const mortgageTerm = formData.get('mortgage-term')
-    const interestRate = formData.get('interest-rate')
-    const mortgageType = formData.get('mortgage-type')
+    const mortgageAmount = formData.get('mortgage-amount').trim();
+    const mortgageTerm = formData.get('mortgage-term').trim();
+    const interestRate = formData.get('interest-rate').trim();
+    const mortgageType = formData.get('mortgage-type');
 
-    calculateRepayments(mortgageAmount, mortgageTerm, interestRate, mortgageType);
+    /* Error Handling */
+
+    if (mortgageAmount === '' || mortgageTerm === '' || interestRate === '') {
+        console.log('error 1')
+    }
+
+    else if (numRegex.test(mortgageAmount) !== true || numRegex.test(mortgageTerm) !== true || floatRegex.test(interestRate) !== true) {
+        console.log('error 2')
+    } else {
+        console.log('success')
+        calculateRepayments(mortgageAmount, mortgageTerm, interestRate, mortgageType);
+    }
+
 
 })
 
