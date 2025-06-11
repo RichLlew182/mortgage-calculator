@@ -11,11 +11,6 @@ mortgageCalculatorForm.addEventListener('submit', function (e) {
     const interestRate = formData.get('interest-rate')
     const mortgageType = formData.get('mortgage-type')
 
-    console.log('Mortgage Amount: ' + mortgageAmount);
-    console.log('Mortgage Term: ' + mortgageTerm);
-    console.log('Interest Rate: ' + interestRate);
-    console.log('Mortgage Type: ' + mortgageType);
-
     calculateRepayments(mortgageAmount, mortgageTerm, interestRate, mortgageType);
 
 })
@@ -25,27 +20,27 @@ function calculateRepayments(mortgageAmount, mortgageTerm, interestRate, mortgag
     const payments = mortgageTerm * 12;
     const monthlyInterest = interestRate / 100 / 12;
     const interestOnly = mortgageAmount * monthlyInterest;
-    const capitalRepayment = mortgageAmount * monthlyInterest * Math.pow(1 + monthlyInterest, payments) / (Math.pow(1 + monthlyInterest, payments) - 1)
+    const capitalRepayment = mortgageAmount * monthlyInterest * Math.pow(1 + monthlyInterest, payments) / (Math.pow(1 + monthlyInterest, payments) - 1);
 
-    console.log({ capitalRepayment });
-    console.log({ monthlyInterest })
-    console.log({ interestOnly })
-    console.log(capitalRepayment + monthlyInterest)
+    const totalRepayment = payments * capitalRepayment;
+    const totalInterest = payments * interestOnly;
 
     if (mortgageType === 'Repayment') {
-        updateForm(capitalRepayment.toFixed(2))
+        updateForm(capitalRepayment.toFixed(2), totalRepayment.toFixed(2))
     }
     else {
-        updateForm(interestOnly.toFixed(2))
+        updateForm(interestOnly.toFixed(2), totalInterest.toFixed(2))
     }
 
 }
 
-function updateForm(value) {
+function updateForm(value, total) {
 
     const repaymentDiv = document.querySelector('.repayment-amount');
+    const totalRepaymentDiv = document.querySelector('.total-repayment');
 
-    repaymentDiv.innerHTML = '£' + value
+    repaymentDiv.innerHTML = '£' + value;
+    totalRepaymentDiv.innerHTML = '£' + total;
 
 }
 
