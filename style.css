@@ -13,7 +13,7 @@ body {
     display: none
 }
 
-.error {
+div.error {
     color: red;
 }
 

@@ -1,15 +1,37 @@
 const mortgageCalculatorForm = document.querySelector('#mortgageCalculatorForm');
 
-const errorMortgageAmount = document.querySelector('.error-mortgage-amount')
+const formInputs = document.querySelectorAll('form input');
+
+console.log(formInputs);
+
+const mortgageAmountInput = document.querySelector('input[name="mortgage-amount"]');
+const mortgageTermInput = document.querySelector('input[name="mortgage-term"]');
+const interestRateInput = document.querySelector('input[name="interest-rate"]');
+const mortgageTypeInput = document.querySelector('input[name="mortgage-type"]');
+
+formInputs.forEach(function (el) {
+
+    el.addEventListener('input', function () {
+        if (this.classList.contains('error')) {
+            this.classList.remove('error');
+            this.nextElementSibling.innerHTML = ''
+        }
+    })
+
+})
+
+// mortgageAmountInput.addEventListener('input', function () {
+//     if (this.classList.contains('error')) {
+//         this.classList.remove('error');
+//         this.nextElementSibling.innerHTML = ''
+//     }
+// })
+
+const errorMessage = 'This is a required field';
 
 mortgageCalculatorForm.addEventListener('submit', function (e) {
 
     e.preventDefault();
-
-    const mortgageAmountInput = document.querySelector('input[name="mortgage-amount"]');
-    const mortgageTermInput = document.querySelector('input[name="mortgage-term"]');
-    const interestRateInput = document.querySelector('input[name="interest-rate"]');
-    const mortgageTypeInput = document.querySelector('input[name="mortgage-type"]');
 
     const mortgageAmount = mortgageAmountInput.value.trim();
     const mortgageTerm = mortgageTermInput.value.trim();
@@ -22,11 +44,24 @@ mortgageCalculatorForm.addEventListener('submit', function (e) {
     let floatRegex = /^\d*\.?\d*$/;
 
     if (mortgageAmount === '') {
-        errorMortgageAmount.innerHTML = 'This is a required field';
-        mortgageAmountInput.classList.add('error')
+        mortgageAmountInput.nextElementSibling.innerHTML = errorMessage;
+        mortgageAmountInput.classList.add('error');
+    } else {
+        mortgageAmountInput.nextElementSibling.innerHTML = '';
+        mortgageAmountInput.classList.remove('error');
     }
 
-    else if (numRegex.test(mortgageAmount) !== true || numRegex.test(mortgageTerm) !== true || floatRegex.test(interestRate) !== true) {
+    if (mortgageTerm === '') {
+        mortgageTermInput.nextElementSibling.innerHTML = errorMessage;
+        mortgageTermInput.classList.add('error');
+    }
+
+    if (interestRate === '') {
+        interestRateInput.nextElementSibling.innerHTML = errorMessage;
+        interestRateInput.classList.add('error');
+    }
+
+    if (numRegex.test(mortgageAmount) !== true || numRegex.test(mortgageTerm) !== true || floatRegex.test(interestRate) !== true) {
         console.log('error 2')
     } else {
         console.log('success')
