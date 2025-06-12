@@ -7,6 +7,7 @@
 
     --lime: hsl(61, 70%, 52%);
     --limeLight: hsl(61, 70%, 76%);
+    --limeLighter: hsla(61, 70%, 52%, 0.15);
     --red: hsl(4, 69%, 50%);
     --white: hsl(0, 0%, 100%);
     --slate-100: hsl(202, 86%, 94%);
@@ -20,6 +21,7 @@
 
     --bs-border-radius: 0.25rem;
     --bs-border-radius-xxl: 1.5rem;
+    --bs-border-color: var(--slate-500)
 }
 
 .border-lime {
@@ -94,9 +96,14 @@
     margin-bottom: 2.5rem !important;
 }
 
+.fs-5 {
+    font-size: 1.125rem !important;
+}
+
 body {
     font-family: 'Plus Jakarta Sans';
     background-color: var(--slate-100);
+    color: var(--slate-900)
 }
 
 p {
@@ -116,13 +123,82 @@ label,
     color: var(--slate-700)
 }
 
+.form-label {
+    margin-bottom: .75rem;
+}
+
+.form-check-input {
+    border-width: 2px;
+}
+
+.form-check-input:checked {
+    background-color: var(--lime);
+    border-color: var(--lime);
+}
+
+.form-control:focus {
+    border-color: var(--lime);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.form-control:focus~span {
+    background-color: var(--lime);
+    border-color: var(--lime);
+    color: var(--slate-900)
+}
+
+.input-group-text {
+    background-color: var(--slate-100);
+    padding: 12px 16px;
+}
+
+.input-group:has(.form-control.error) .input-group-text {
+    background-color: var(--red);
+    border-color: var(--red);
+    color: white;
+}
+
+.checkbox {
+    padding: 12px 16px;
+}
+
+.checkbox:has(:checked) {
+    border-color: var(--lime) !important;
+    background-color: var(--limeLighter);
+}
+
+.vh-100 {
+    min-height: 100vh;
+    height: auto !important;
+}
+
+.form-check-input:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
 .btn.bg-lime:hover {
     background-color: var(--limeLight);
 }
 
-/* .results-completed {
+button#clearBtn:hover {
+    color: var(--slate-900)
+}
+
+.text-decoration-underline {
+    text-underline-offset: 3px;
+}
+
+.results-empty {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.results-completed {
     display: none
-} */
+}
 
 .container-sm {
     max-width: 1008px;
@@ -145,4 +221,42 @@ input.error {
 .total-repayment {
     font-size: 24px;
     line-height: 125%;
+}
+
+#calculateRepaymentsBtn {
+    padding: 16px 40px;
+    font-size: 18px;
+    color: var(--slate-900)
+}
+
+@media (max-width: 767px) {
+
+    .rounded-5,
+    #mortgageResults {
+        border-radius: 0 !important;
+    }
+
+    .p-5 {
+        padding: 2rem 1.5rem !important;
+    }
+
+    #calculateRepaymentsBtn {
+        width: 100%;
+    }
+
+    .mb-5 {
+        margin-bottom: 1.5rem !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .p-md-5 {
+        padding: 2..5rem !important;
+    }
+}
+
+@media (min-width: 992px) {
+    #mortgageResults {
+        border-bottom-left-radius: 80px;
+    }
 }

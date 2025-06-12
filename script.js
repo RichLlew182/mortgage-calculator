@@ -94,7 +94,7 @@ const totalRepaymentDiv = document.querySelector('.total-repayment');
 
 function updateForm(value, total) {
 
-    completedResults.style.display = 'block'
+    completedResults.style.display = 'flex'
     emptyResults.style.display = 'none'
 
     repaymentDiv.innerHTML = '£' + value;
@@ -110,7 +110,7 @@ clearButton.addEventListener('click', function (e) {
 
     form.reset();
     completedResults.style.display = 'none';
-    emptyResults.style.display = 'block';
+    emptyResults.style.display = 'flex';
     formInputs.forEach(function (el) {
 
         el.classList.remove('error');
