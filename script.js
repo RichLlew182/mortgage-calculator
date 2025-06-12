@@ -3,8 +3,10 @@ const formInputs = document.querySelectorAll('#mortgageCalculatorForm input:not(
 const mortgageAmountInput = document.querySelector('input[name="mortgage-amount"]');
 const mortgageTermInput = document.querySelector('input[name="mortgage-term"]');
 const interestRateInput = document.querySelector('input[name="interest-rate"]');
-const mortgageTypeInput = document.querySelector('input[name="mortgage-type"]');
-
+const mortgageTypes = document.querySelectorAll('input[name="mortgage-type"]')
+const mortgageTypeRepayment = document.querySelector('input[value="Repayment"]');
+const mortgageTypeInterestOnly = document.querySelector('input[value="Interest Only"]');
+const mortgateTypeError = document.querySelector('.error-mortgage-type')
 
 formInputs.forEach(function (el) {
 
@@ -15,6 +17,15 @@ formInputs.forEach(function (el) {
             this.parentElement.nextElementSibling.innerHTML = ''
         }
     })
+
+})
+
+mortgageTypes.forEach(function (el) {
+
+    el.addEventListener('input', function () {
+        this.parentElement.parentElement.lastElementChild.innerHTML = ''
+    })
+
 
 })
 
@@ -40,7 +51,6 @@ mortgageCalculatorForm.addEventListener('submit', function (e) {
             el.classList.add('error');
             el.parentElement.nextElementSibling.innerHTML = errorMessage;
             hasError = true
-
         }
 
         else if (!numRegex.test(el.value)) {
@@ -54,6 +64,13 @@ mortgageCalculatorForm.addEventListener('submit', function (e) {
         }
 
     })
+
+    if (!mortgageTypeRepayment.checked && !mortgageTypeInterestOnly.checked) {
+        mortgateTypeError.innerHTML = errorMessage
+        hasError = true;
+    } else {
+        mortgateTypeError.innerHTML = ''
+    }
 
     if (hasError) {
         return;

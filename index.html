@@ -68,16 +68,18 @@
                 </div>
               </div>
 
-              <label for="mortgage-type">Mortgage Type</label>
-              <div class="checkbox border rounded-2 d-flex gap-3 w-100">
-                <input class="form-check-input" type="radio" id="repayment" name="mortgage-type" value="Repayment"
-                  checked="true">
-                <label for="repayment" class="form-check-label fw-bold color-slate-900 fs-5">Repayment</label>
-              </div>
-              <div class="checkbox border rounded-2 d-flex gap-3 w-100 lh-base">
-                <input class="form-check-input" type="radio" id="interestOnly" name="mortgage-type"
-                  value="Interest Only">
-                <label for="interestOnly" class="form-check-label fw-bold color-slate-900 fs-5">Interest Only</label>
+              <div class="checkboxes">
+                <p class="form-label">Mortgage Type</p>
+                <div class="checkbox border rounded-2 d-flex gap-3 w-100 mb-3">
+                  <input class="form-check-input" type="radio" id="repayment" name="mortgage-type" value="Repayment">
+                  <label for="repayment" class="form-check-label fw-bold color-slate-900 fs-5">Repayment</label>
+                </div>
+                <div class="checkbox border rounded-2 d-flex gap-3 w-100 lh-base">
+                  <input class="form-check-input" type="radio" id="interestOnly" name="mortgage-type"
+                    value="Interest Only">
+                  <label for="interestOnly" class="form-check-label fw-bold color-slate-900 fs-5">Interest Only</label>
+                </div>
+                <div class="error form-text error-mortgage-type"></div>
               </div>
 
             </div>
