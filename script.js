@@ -1,17 +1,15 @@
 const mortgageCalculatorForm = document.querySelector('#mortgageCalculatorForm');
-
-const formInputs = document.querySelectorAll('form input');
-
-console.log(formInputs);
-
+const formInputs = document.querySelectorAll('#mortgageCalculatorForm input:not([type="radio"])');
 const mortgageAmountInput = document.querySelector('input[name="mortgage-amount"]');
 const mortgageTermInput = document.querySelector('input[name="mortgage-term"]');
 const interestRateInput = document.querySelector('input[name="interest-rate"]');
 const mortgageTypeInput = document.querySelector('input[name="mortgage-type"]');
 
+
 formInputs.forEach(function (el) {
 
     el.addEventListener('input', function () {
+
         if (this.classList.contains('error')) {
             this.classList.remove('error');
             this.nextElementSibling.innerHTML = ''
@@ -20,53 +18,76 @@ formInputs.forEach(function (el) {
 
 })
 
-// mortgageAmountInput.addEventListener('input', function () {
-//     if (this.classList.contains('error')) {
-//         this.classList.remove('error');
-//         this.nextElementSibling.innerHTML = ''
-//     }
-// })
-
-const errorMessage = 'This is a required field';
+let errorMessage = 'This is a required field';
 
 mortgageCalculatorForm.addEventListener('submit', function (e) {
 
     e.preventDefault();
+    let hasError = false;
 
     const mortgageAmount = mortgageAmountInput.value.trim();
     const mortgageTerm = mortgageTermInput.value.trim();
     const interestRate = interestRateInput.value.trim();
     const mortgageType = mortgageTypeInput.value.trim();
 
-    /* Error Handling */
+    const numRegex = /^\d+$/;
 
-    let numRegex = /^\d+$/;
-    let floatRegex = /^\d*\.?\d*$/;
+    formInputs.forEach(function (el) {
 
-    if (mortgageAmount === '') {
-        mortgageAmountInput.nextElementSibling.innerHTML = errorMessage;
-        mortgageAmountInput.classList.add('error');
+        console.log(el)
+
+        if (el.value === '') {
+            el.classList.add('error');
+            el.nextElementSibling.innerHTML = errorMessage;
+            hasError = true
+
+        }
+
+        else if (!numRegex.test(el.value)) {
+            el.classList.add('error');
+            el.nextElementSibling.innerHTML = 'Must be a number';
+            hasError = true
+        }
+
+        else {
+            hasError = false;
+        }
+
+    })
+
+    if (hasError) {
+        return; // Stop further processing
     } else {
-        mortgageAmountInput.nextElementSibling.innerHTML = '';
-        mortgageAmountInput.classList.remove('error');
-    }
-
-    if (mortgageTerm === '') {
-        mortgageTermInput.nextElementSibling.innerHTML = errorMessage;
-        mortgageTermInput.classList.add('error');
-    }
-
-    if (interestRate === '') {
-        interestRateInput.nextElementSibling.innerHTML = errorMessage;
-        interestRateInput.classList.add('error');
-    }
-
-    if (numRegex.test(mortgageAmount) !== true || numRegex.test(mortgageTerm) !== true || floatRegex.test(interestRate) !== true) {
-        console.log('error 2')
-    } else {
-        console.log('success')
+        console.log('success');
+        console.log(mortgageAmount, mortgageTerm, interestRate, mortgageType);
         calculateRepayments(mortgageAmount, mortgageTerm, interestRate, mortgageType);
     }
+
+    /* Error Handling */
+
+    // let numRegex = /^\d+$/;
+    // let floatRegex = /^\d*\.?\d*$/;
+
+    // Hardcoded empty string
+
+    // console.log(numRegex.test(mortgageAmount));
+
+    // if (!numRegex.test(mortgageAmount)) {
+    //     mortgageAmountInput.classList.add('error');
+    //     mortgageAmountInput.nextElementSibling.innerHTML = 'Mortgage Amount must be a number';
+    // }
+
+    // else if (numRegex.test(mortgageTerm) !== true) {
+    //     mortgageTermInput.classList.add('error');
+    //     mortgageTermInput.nextElementSibling.innerHTML = 'Mortgage Term must be a number';
+    // }
+
+    // else if (floatRegex.test(interestRate) !== true) {
+    //     interestRateInput.classList.add('error');
+    //     interestRateInput.nextElementSibling.innerHTML = 'Interest Rate must be a number';
+    // }
+
+
 
 
 })
@@ -114,6 +135,11 @@ clearButton.addEventListener('click', function (e) {
 
     form.reset();
     completedResults.style.display = 'none';
-    emptyResults.style.display = 'block'
+    emptyResults.style.display = 'block';
+    formInputs.forEach(function (el) {
+
+        el.classList.remove('error');
+        el.nextElementSibling.innerHTML = ''
+    })
 
 })
