@@ -6,6 +6,7 @@
 :root {
 
     --lime: hsl(61, 70%, 52%);
+    --limeLight: hsl(61, 70%, 76%);
     --red: hsl(4, 69%, 50%);
     --white: hsl(0, 0%, 100%);
     --slate-100: hsl(202, 86%, 94%);
@@ -16,10 +17,21 @@
 
     --fw-bold: 700;
     --fw-normal: 500;
+
+    --bs-border-radius: 0.25rem;
+    --bs-border-radius-xxl: 1.5rem;
+}
+
+.border-lime {
+    --bs-border-color: var(--lime)
 }
 
 .bg-lime {
     background-color: var(--lime);
+}
+
+.color-lime {
+    color: var(--lime)
 }
 
 .bg-red {
@@ -38,6 +50,10 @@
     background-color: var(--slate-300);
 }
 
+.color-slate-300 {
+    color: var(--slate-300)
+}
+
 .bg-slate-500 {
     background-color: var(--slate-500);
 }
@@ -46,8 +62,36 @@
     background-color: var(--slate-700);
 }
 
+.color-slate-700 {
+    color: var(--slate-700)
+}
+
 .bg-slate-900 {
     background-color: var(--slate-900);
+}
+
+.color-slate-900 {
+    color: var(--slate-900);
+}
+
+.p-4 {
+    padding: 2rem !important;
+}
+
+.p-5 {
+    padding: 2.5rem !important;
+}
+
+.gap-4 {
+    gap: 2rem !important;
+}
+
+.gap-5 {
+    gap: 2.5rem !important;
+}
+
+.mb-5 {
+    margin-bottom: 2.5rem !important;
 }
 
 body {
@@ -62,16 +106,43 @@ p {
 h1,
 h2 {
     font-weight: var(--fw-bold);
+    font-size: 24px;
+    line-height: 125%;
+    margin-bottom: 1rem;
 }
 
-.results-completed {
+label,
+.input-group-text {
+    color: var(--slate-700)
+}
+
+.btn.bg-lime:hover {
+    background-color: var(--limeLight);
+}
+
+/* .results-completed {
     display: none
+} */
+
+.container-sm {
+    max-width: 1008px;
 }
 
 div.error {
-    color: var(--red)
+    color: var(--red);
+    font-size: 14px;
 }
 
 input.error {
     border: 1px solid var(--red)
+}
+
+.repayment-amount {
+    font-size: 56px;
+    line-height: 125%;
+}
+
+.total-repayment {
+    font-size: 24px;
+    line-height: 125%;
 }
