@@ -142,7 +142,7 @@ label,
     box-shadow: none;
 }
 
-.form-control:focus~span {
+.input-group:has(:focus) .input-group-text {
     background-color: var(--lime);
     border-color: var(--lime);
     color: var(--slate-900)
@@ -251,7 +251,7 @@ input.error {
 
 @media (min-width: 768px) {
     .p-md-5 {
-        padding: 2..5rem !important;
+        padding: 2.5rem !important;
     }
 }
 

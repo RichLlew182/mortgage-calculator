@@ -12,7 +12,7 @@ formInputs.forEach(function (el) {
 
         if (this.classList.contains('error')) {
             this.classList.remove('error');
-            this.nextElementSibling.innerHTML = ''
+            this.parentElement.nextElementSibling.innerHTML = ''
         }
     })
 
@@ -38,14 +38,14 @@ mortgageCalculatorForm.addEventListener('submit', function (e) {
 
         if (el.value === '') {
             el.classList.add('error');
-            el.nextElementSibling.innerHTML = errorMessage;
+            el.parentElement.nextElementSibling.innerHTML = errorMessage;
             hasError = true
 
         }
 
         else if (!numRegex.test(el.value)) {
             el.classList.add('error');
-            el.nextElementSibling.innerHTML = 'Must be a number';
+            el.parentElement.nextElementSibling.innerHTML = 'Must be a number';
             hasError = true
         }
 
@@ -114,7 +114,7 @@ clearButton.addEventListener('click', function (e) {
     formInputs.forEach(function (el) {
 
         el.classList.remove('error');
-        el.nextElementSibling.innerHTML = ''
+        el.parentElement.nextElementSibling.innerHTML = ''
     })
 
 })
