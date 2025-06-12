@@ -18,23 +18,23 @@ formInputs.forEach(function (el) {
 
 })
 
-let errorMessage = 'This is a required field';
+let errorMessage = 'This field is required';
 
 mortgageCalculatorForm.addEventListener('submit', function (e) {
 
     e.preventDefault();
+
     let hasError = false;
 
-    const mortgageAmount = mortgageAmountInput.value.trim();
-    const mortgageTerm = mortgageTermInput.value.trim();
-    const interestRate = interestRateInput.value.trim();
-    const mortgageType = mortgageTypeInput.value.trim();
+    const formData = new FormData(mortgageCalculatorForm);
+    const mortgageType = formData.get('mortgage-type');
+    const mortgageAmount = formData.get('mortgage-amount');
+    const mortgageTerm = formData.get('mortgage-term');
+    const interestRate = formData.get('interest-rate');
 
-    const numRegex = /^\d+$/;
+    const numRegex = /^\d*\.?\d*$/
 
     formInputs.forEach(function (el) {
-
-        console.log(el)
 
         if (el.value === '') {
             el.classList.add('error');
@@ -56,43 +56,18 @@ mortgageCalculatorForm.addEventListener('submit', function (e) {
     })
 
     if (hasError) {
-        return; // Stop further processing
+        return;
     } else {
         console.log('success');
-        console.log(mortgageAmount, mortgageTerm, interestRate, mortgageType);
+
         calculateRepayments(mortgageAmount, mortgageTerm, interestRate, mortgageType);
     }
-
-    /* Error Handling */
-
-    // let numRegex = /^\d+$/;
-    // let floatRegex = /^\d*\.?\d*$/;
-
-    // Hardcoded empty string
-
-    // console.log(numRegex.test(mortgageAmount));
-
-    // if (!numRegex.test(mortgageAmount)) {
-    //     mortgageAmountInput.classList.add('error');
-    //     mortgageAmountInput.nextElementSibling.innerHTML = 'Mortgage Amount must be a number';
-    // }
-
-    // else if (numRegex.test(mortgageTerm) !== true) {
-    //     mortgageTermInput.classList.add('error');
-    //     mortgageTermInput.nextElementSibling.innerHTML = 'Mortgage Term must be a number';
-    // }
-
-    // else if (floatRegex.test(interestRate) !== true) {
-    //     interestRateInput.classList.add('error');
-    //     interestRateInput.nextElementSibling.innerHTML = 'Interest Rate must be a number';
-    // }
-
-
-
 
 })
 
 function calculateRepayments(mortgageAmount, mortgageTerm, interestRate, mortgageType) {
+
+    console.log(mortgageAmount, mortgageTerm, interestRate, mortgageType);
 
     const payments = mortgageTerm * 12;
     const monthlyInterest = interestRate / 100 / 12;
