@@ -97,6 +97,10 @@
     gap: 2.5rem !important;
 }
 
+.me-2 {
+    margin-right: .75rem !important;
+}
+
 .mb-5 {
     margin-bottom: 2.5rem !important;
 }
@@ -121,6 +125,11 @@ h2 {
     font-size: 24px;
     line-height: 125%;
     margin-bottom: 1rem;
+}
+
+form#mortgageCalculatorForm {
+    -webkit-filter: drop-shadow(0px 32px 64px rgba(19, 48, 65, 0.10));
+    filter: drop-shadow(0px 32px 64px rgba(19, 48, 65, 0.10));
 }
 
 label,
@@ -198,6 +207,18 @@ label,
     -webkit-box-shadow: none;
     box-shadow: none;
     border-color: var(--lime);
+}
+
+.btn {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
 .btn.bg-lime:hover {
