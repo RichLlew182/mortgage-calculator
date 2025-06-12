@@ -32,7 +32,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [https://www.frontendmentor.io/solutions/mortgage-calculator-6X4E03lgUE](https://www.frontendmentor.io/solutions/mortgage-calculator-6X4E03lgUE)
 - Live Site URL: [https://richllew182.github.io/mortgage-calculator/](https://richllew182.github.io/mortgage-calculator/)
 
 ## My process
